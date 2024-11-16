@@ -52,6 +52,12 @@ export default function Header() {
               Mes citations enregistrées
             </a>
             <a
+              href="/page/amis"
+              className="hover:text-blue-600 transition duration-200"
+            >
+              Mes Amis
+            </a>
+            <a
               href="/page/profile"
               className="hover:text-blue-600 transition duration-200"
             >

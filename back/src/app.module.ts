@@ -5,9 +5,8 @@ import { ConnexionModule } from './connexion/connexion.module';
 import { SessionController } from './session/session.controller';
 import { ProfileModule } from './profile/profile.module';
 import { QuoteModule } from './quote/quote.module';
-import { CommentController } from './comment/comment.controller';
-import { CommentService } from './comment/comment.service';
 import { CommentModule } from './comment/comment.module';
+import { AmisModule } from './amis/amis.module';
 
 @Module({
   imports: [
@@ -27,6 +26,7 @@ import { CommentModule } from './comment/comment.module';
     ProfileModule,
     QuoteModule,
     CommentModule,
+    AmisModule,
   ],
   controllers: [SessionController],  
 })

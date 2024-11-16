@@ -1,15 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm';
-import { InscriptionUser } from '../inscription/inscription.entity';  // Import de l'autre entité
-import { QuoteData } from '../quote/quote.entity'; // Import de l'entité QuoteData
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
+import { InscriptionUser } from '../inscription/inscription.entity';
+import { QuoteData } from '../quote/quote.entity';
 
 @Entity('profileData')
 export class ProfileData {
   @PrimaryGeneratedColumn()
   id: number;
-  
-  // Relation avec InscriptionUser, cette relation permet de récupérer l'email et le nom
-  @OneToOne(() => InscriptionUser, user => user.profile)
-  @JoinColumn()  // Nécessaire pour établir la relation "OneToOne"
+
+  @OneToOne(() => InscriptionUser, (user) => user.profile)
+  @JoinColumn()
   user: InscriptionUser;
 
   @Column()
@@ -24,11 +30,10 @@ export class ProfileData {
   @Column()
   totalComments: number;
 
-  // Stocker les IDs des citations likées dans un tableau de nombres
+  // Liste des citations likées
   @Column('simple-array', { default: [] })
   quoteLikeIDs: number[];
 
-  // Relation avec QuoteData, un profil peut avoir plusieurs citations
-  @OneToMany(() => QuoteData, quote => quote.profile)
+  @OneToMany(() => QuoteData, (quote) => quote.profile)
   quotes: QuoteData[];
 }

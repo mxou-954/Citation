@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InscriptionUser } from 'src/entity/inscription/inscription.entity';
-import { privateDecrypt } from 'crypto';
 
 @Injectable()
 export class ConnexionService {
@@ -13,7 +12,10 @@ export class ConnexionService {
   ) {}
 
   async findUserByEmail(email: string): Promise<InscriptionUser | undefined> {
-    return this.inscriptionRepository.findOne({ where: { email } });
+    return this.inscriptionRepository.findOne({
+      where: { email },
+      relations: ['profile'], // Inclut la relation pour obtenir le profil
+    });
   }
 
   async validationPassword(
